@@ -106,10 +106,12 @@ sequelize.sync({ alter: true })
 
 
 // Set up the server
-const port = process.env.PORT || 8080; // Default to port 8080 if PORT is undefined
+const port = process.env.PORT || 8080;
+
 app.get("/", (req, res) => {
-  res.send("App is running 🚀");
+  res.send("<h1>Website is working 🚀</h1>");
 });
+
 app.listen(port, () => {
   console.log("Server running on port " + port);
 });
