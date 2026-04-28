@@ -67,46 +67,48 @@ if (process.env.NODE_ENV === 'development') {
 // Database Connection
 
 // MySQL connection using Sequelize
-const sequelize = require('./config/mysql');
-sequelize.authenticate()
-  .then(() => console.log('MySQL connection established'))
-  .catch(err => {
-    console.error('MySQL connection error:', err);
-    process.exit(1);
-  });
+const dbConnection = require('./config/mysql');
+// sequelize.authenticate()
+//   .then(() => console.log('MySQL connection established'))
+//   .catch(err => {
+//     console.error('MySQL connection error:', err);
+//     process.exit(1);
+//   });
+
 
 const Admin = require('./models/admin');
 const bcrypt = require('bcrypt');
 
 // Sync models (creates tables if they don't exist and updates them)
-sequelize.sync({ alter: true })
-  .then(async () => {
-    console.log('Sequelize models synchronized');
-    try {
-        const email = 'admin@admin.com';
-        const existingAdmin = await Admin.findOne({ where: { email } });
-        if (!existingAdmin) {
-            const hashedPassword = await bcrypt.hash('Admin123!', 10);
-            await Admin.create({
-                adminId: 'A001',
-                name: 'Super Admin',
-                email: email,
-                password: hashedPassword,
-                phone: '1234567890'
-            });
-            console.log('Default Admin Account Created Automatically!');
-        } else {
-            console.log('Default Admin Account already exists.');
-        }
+// sequelize.sync({ alter: true })
+//   .then(async () => {
+//     console.log('Sequelize models synchronized');
+//     try {
+//         const email = 'admin@admin.com';
+//         const existingAdmin = await Admin.findOne({ where: { email } });
+//         if (!existingAdmin) {
+//             const hashedPassword = await bcrypt.hash('Admin123!', 10);
+//             await Admin.create({
+//                 adminId: 'A001',
+//                 name: 'Super Admin',
+//                 email: email,
+//                 password: hashedPassword,
+//                 phone: '1234567890'
+//             });
+//             console.log('Default Admin Account Created Automatically!');
+//         } else {
+//             console.log('Default Admin Account already exists.');
+//         }
+// 
+//         // Run the Telangana seed script
+//         const seedTelangana = require('./seedTelangana');
+//         await seedTelangana();
+//     } catch (err) {
+//         console.error('Error seeding admin automatically:', err);
+//     }
+//   })
+//   .catch(err => console.error('Sequelize sync error:', err));
 
-        // Run the Telangana seed script
-        const seedTelangana = require('./seedTelangana');
-        await seedTelangana();
-    } catch (err) {
-        console.error('Error seeding admin automatically:', err);
-    }
-  })
-  .catch(err => console.error('Sequelize sync error:', err));
 
 
 // Set up the server
