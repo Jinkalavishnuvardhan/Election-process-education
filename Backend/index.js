@@ -114,7 +114,7 @@ const bcrypt = require('bcrypt');
 // Set up the server
 const port = process.env.PORT || 5000; // Default to port 5000 if PORT is undefined
 app.get("/", (req, res) => {
-  res.send("Server + DB working 🚀");
+  res.send("App is working 🚀");
 });
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
