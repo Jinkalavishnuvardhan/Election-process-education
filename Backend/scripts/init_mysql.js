@@ -5,13 +5,8 @@ const sequelize = require('../config/mysql');
 
 (async () => {
   try {
-    const connection = await mysql.createConnection({
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-    });
-    await connection.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME}\`;`);
+    // Database initialized via MYSQL_URL in config
+    const connection = null; // No longer manually connecting with individual DB_ variables
     console.log('Database created or already exists');
     await connection.end();
 

@@ -4,6 +4,6 @@ const sequelize = new Sequelize(process.env.MYSQL_URL);
 
 sequelize.authenticate()
   .then(() => console.log("MySQL Connected ✅"))
-  .catch(err => console.error("MySQL Error ❌", err));
+  .catch(err => console.error("MySQL Error ❌", err.message));
 
 module.exports = sequelize;
