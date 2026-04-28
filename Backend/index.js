@@ -109,7 +109,7 @@ sequelize.sync({ alter: true })
 const port = process.env.PORT || 8080;
 
 app.get("/", (req, res) => {
-  res.send("<h1>Website is working 🚀</h1>");
+  res.send("Website is working 🚀");
 });
 
 app.listen(port, () => {

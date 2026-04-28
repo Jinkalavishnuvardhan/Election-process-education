@@ -1,20 +1,9 @@
 const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize(process.env.MYSQL_URL, {
-  dialect: "mysql",
-  logging: false
-});
+const sequelize = new Sequelize(process.env.MYSQL_URL);
 
-async function connectDB() {
-  try {
-    await sequelize.authenticate();
-    console.log("MySQL Connected ✅");
-  } catch (err) {
-    console.error("MySQL Error ❌", err.message);
-    // ❗ DO NOT EXIT APP
-  }
-}
-
-connectDB();
+sequelize.authenticate()
+  .then(() => console.log("MySQL Connected ✅"))
+  .catch(err => console.log("MySQL Error ❌", err.message));
 
 module.exports = sequelize;
