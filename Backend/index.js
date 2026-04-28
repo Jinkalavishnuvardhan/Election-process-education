@@ -106,7 +106,7 @@ sequelize.sync({ alter: true })
 
 
 // Set up the server
-const port = process.env.PORT || 5000; // Default to port 5000 if PORT is undefined
+const port = process.env.PORT || 8080; // Default to port 8080 if PORT is undefined
 app.get("/", (req, res) => {
   res.send("App is working 🚀");
 });
